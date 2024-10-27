@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://mern-food-app-frontend-u8fs.onrender.com'], // Replace with your actual frontend URL
+    origin: ['http://localhost:5173', 'https://manage-hostel-frontend.onrender.com'], // Replace with your actual frontend URL
     credentials: true,
 }));
 
