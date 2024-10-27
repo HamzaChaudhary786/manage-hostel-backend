@@ -1,0 +1,5 @@
+npm init -y
+npm i express dotenv mongodb mongoose cors
+npm install cross-env --save-dev
+npm install ts-node typescript nodemon @types/express @types/cors @types/node --save-dev
+npx tsc --init  //add tsconfig.json file
