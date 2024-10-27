@@ -35,6 +35,8 @@ cloudinary.config({
 })
 
 
+
+
 app.use('/api/auth', authRoute)
 
 app.get('/health', async (req: Request, res: Response) => {

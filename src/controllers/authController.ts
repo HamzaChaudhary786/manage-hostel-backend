@@ -6,7 +6,7 @@ export const createCurrentUser = async (req: Request, res: Response): Promise<an
 
 
     try {
-        console.log("hehehhe");
+
 
 
         const { auth0Id } = req.body;
@@ -41,6 +41,7 @@ const uploadImage = async (file: Express.Multer.File) => {
         const base64Image = Buffer.from(file.buffer).toString("base64");
         const dataURI = `data:${file.mimetype};base64,${base64Image}`;
         const uploadResponse = await cloudinary.v2.uploader.upload(dataURI);
+
         return uploadResponse.url;
     } catch (error) {
         console.error("Error during image upload:", error);
@@ -53,13 +54,10 @@ export const updateCurrentUser = async (
     res: Response
 ): Promise<any> => {
     try {
-        const { addressLine1, city, country, username, phoneNumber, imageUrl } = req.body;
+        const { addressLine1, city, country, username, phoneNumber } = req.body;
 
-        let imageurl = imageUrl;
         // Upload image if a new file is provided
-        if (req.file) {
-            imageurl = await uploadImage(req.file as Express.Multer.File);
-        }
+
 
         const user = await User.findById(req.userId);
 
@@ -74,8 +72,12 @@ export const updateCurrentUser = async (
         user.addressLine1 = addressLine1;
         user.phoneNumber = phoneNumber;
         user.country = country;
+        if (req.file) {
+            const imageurl = await uploadImage(req.file as Express.Multer.File);
+            user.imageUrl = imageurl;
+        }
         user.city = city;
-        user.imageUrl = imageurl;
+
 
         await user.save();
 
