@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import 'dotenv/config'
 import cors from 'cors'
 import authRoute from './routes/authRoute'
+import hostelRoute from './routes/hostelRoute'
 import mongoose from 'mongoose';
 import { v2 as cloudinary } from 'cloudinary';
 
@@ -38,6 +39,8 @@ cloudinary.config({
 
 
 app.use('/api/auth', authRoute)
+app.use('/api', hostelRoute)
+
 
 app.get('/health', async (req: Request, res: Response) => {
 
