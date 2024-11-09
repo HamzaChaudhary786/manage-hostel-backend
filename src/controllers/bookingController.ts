@@ -13,6 +13,8 @@ const stripe = new Stripe(process.env.STRIPE_API_KEY as string, {
 
 
 export const stripeWebhookHandler = async (req: Request, res: Response): Promise<void> => {
+
+
     const sig = req.headers['stripe-signature'] as string;
 
     let event;
@@ -21,7 +23,7 @@ export const stripeWebhookHandler = async (req: Request, res: Response): Promise
         event = stripe.webhooks.constructEvent(
             req.body,
             sig,
-            process.env.STRIPE_ENDPOINT_SECRET as string
+            process.env.STRIPE_WEBHOOK_SECRET as string
         );
     } catch (err: any) {
         console.error(`Webhook signature verification failed: ${err.message}`);
@@ -176,7 +178,7 @@ export const getBookings = async (req: Request, res: Response) => {
         const userId = req.userId;
 
         // Fetch all bookings for the user
-        const bookings = await Booking.find({ user:userId }).sort({ createdAt: -1 });
+        const bookings = await Booking.find({ user: userId }).sort({ createdAt: -1 });
 
         if (!bookings || bookings.length === 0) {
             res.status(404).json({ message: "No bookings found." });
@@ -308,8 +310,9 @@ export const getMyHostelBookings = async (req: Request, res: Response): Promise<
         }
 
         const bookings = await Booking.find({ hostel: hostel._id }).populate("hostel").populate("user")
+        console.log(bookings, "bookings data uis ");
 
-        console.log("i am not working", bookings);
+        //   const rooms= await Room.findById(bookings.roomId)
         res.status(201).json(bookings);
 
 

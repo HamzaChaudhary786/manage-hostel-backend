@@ -12,7 +12,7 @@ import "./controllers/bookingPendingFuction"
 
 const app = express();
 
-// app.use("/api/booking/checkout/webhook", express.raw({ type: "*/*" }));
+app.use("/api/room/checkout/webhook", express.raw({ type: "*/*" }));
 
 
 app.use(express.json());
