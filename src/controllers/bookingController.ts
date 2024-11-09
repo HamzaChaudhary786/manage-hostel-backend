@@ -121,7 +121,7 @@ export const bookingRoom = async (req: Request, res: Response): Promise<void> =>
                 },
             ],
             mode: 'payment',
-            success_url: `${FRONTEND_URL.replace('https', 'http')}`,
+            success_url: `${FRONTEND_URL.replace('https', 'http')}/booking-status`,
             cancel_url: `${FRONTEND_URL.replace('https', 'http')}/booking-cancel`,
             metadata: {
                 userId,
