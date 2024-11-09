@@ -15,8 +15,6 @@ const deleteExpiredBookings = async () => {
         });
         if (result.deletedCount > 0) {
             console.log(`Deleted ${result.deletedCount} expired bookings.`);
-        } else {
-            console.log("No expired bookings found.");
         }
     } catch (error) {
         console.error('Error deleting expired bookings:', error);

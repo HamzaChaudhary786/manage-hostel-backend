@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 import { v2 as cloudinary } from 'cloudinary';
 import bookingRoute from './routes/bookingRoute'
 import searchHostelRoute from './routes/searchHostelsRoute'
-// import "../src/controllers/bookingPendingFuction"
+import "./controllers/bookingPendingFuction"
 
 
 const app = express();
