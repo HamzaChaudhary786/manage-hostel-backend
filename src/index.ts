@@ -5,10 +5,15 @@ import authRoute from './routes/authRoute'
 import hostelRoute from './routes/hostelRoute'
 import mongoose from 'mongoose';
 import { v2 as cloudinary } from 'cloudinary';
-
+import bookingRoute from './routes/bookingRoute'
+import searchHostelRoute from './routes/searchHostelsRoute'
+import "../src/controllers/bookingPendingFuction"
 
 
 const app = express();
+
+// app.use("/api/booking/checkout/webhook", express.raw({ type: "*/*" }));
+
 
 app.use(express.json());
 app.use(cors({
@@ -40,6 +45,9 @@ cloudinary.config({
 
 app.use('/api/auth', authRoute)
 app.use('/api', hostelRoute)
+app.use('/api/hostel', searchHostelRoute)
+app.use('/api/room', bookingRoute)
+
 
 
 app.get('/health', async (req: Request, res: Response) => {
