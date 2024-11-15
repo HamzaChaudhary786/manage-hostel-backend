@@ -4,7 +4,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "dev": "concurrently \"nodemon\" \"npm run stripe\"",
-    "stripe": "stripe listen --forward-to localhost:7000/api/room/checkout/webhook",
+    "stripe": "stripe listen --forward-to https://manage-hostel-backend.onrender.com/api/room/checkout/webhook",
     "build": "npm install && npx tsc",
     "start": "node dist/index.js"
   },

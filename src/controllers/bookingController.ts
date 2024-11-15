@@ -87,7 +87,7 @@ export const bookingRoom = async (req: Request, res: Response): Promise<void> =>
         const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
         const pricePerNight = Number(room.pricePerNight);
         const totalPrice = pricePerNight * nights;
-        // Check room availability
+        // Check room availabilit
         const isAvailable = await checkRoomAvailability(roomId, checkInDate, checkOutDate);
         if (!isAvailable) {
             res.status(409).json({ message: "Room is not available for the selected dates.", });

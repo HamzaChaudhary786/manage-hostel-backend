@@ -8,7 +8,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import bookingRoute from './routes/bookingRoute'
 import searchHostelRoute from './routes/searchHostelsRoute'
 import "./controllers/bookingPendingFuction"
-
+import viewTrackRoute from './routes/viewTrackRoute'
 
 const app = express();
 
@@ -47,7 +47,7 @@ app.use('/api/auth', authRoute)
 app.use('/api', hostelRoute)
 app.use('/api/hostel', searchHostelRoute)
 app.use('/api/room', bookingRoute)
-
+app.use('/api/hostel',viewTrackRoute)
 
 
 app.get('/health', async (req: Request, res: Response) => {

@@ -119,7 +119,7 @@ export const updateMyHostel = async (req: Request, res: Response): Promise<any> 
 export const getMyHostel = async (req: Request, res: Response): Promise<any> => {
     try {
         // Find the hostel and populate the rooms field with room details
-        const hostel = await Hostel.findOne({ user: req.userId }).populate("rooms");;
+        const hostel = await Hostel.findOne({ user: req.userId }).populate("user").populate("rooms");;
 
         // Debugging log to check the hostel data
         console.log(hostel);
