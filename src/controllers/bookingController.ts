@@ -7,7 +7,11 @@ import Stripe from 'stripe';
 
 const FRONTEND_URL = process.env.FRONTEND_URL as string;
 
-const stripe = new Stripe(process.env.STRIPE_API_KEY as string, {
+if (!process.env.STRIPE_API_KEY) {
+    console.warn("STRIPE_API_KEY is not set. Stripe features will not work.");
+}
+
+const stripe = new Stripe(process.env.STRIPE_API_KEY || "dummy", {
     apiVersion: "2024-10-28.acacia",
 });
 

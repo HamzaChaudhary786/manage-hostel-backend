@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./src/index.ts",
   "scripts": {
-    "dev": "concurrently \"nodemon\" \"npm run stripe\"",
+    "dev": "nodemon",
     "stripe": "stripe listen --forward-to https://manage-hostel-backend.onrender.com/api/room/checkout/webhook",
     "build": "npm install && npx tsc",
     "start": "node dist/index.js"
